@@ -1,284 +1,359 @@
 body {
-  margin: 0;
-  padding: 0;
-  font-family: sans-serif;
-  color: #252525;
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    color: #252525;
 }
 
 a {
-  text-decoration: none;
-  color: #252525;
+    text-decoration: none;
+    color: #252525;
 }
 
 .container {
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 10px;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 10px;
 }
 
 .btn {
-  text-transform: uppercase;
-  margin: 35px auto;
-  padding: 10px;
-  border: 1px solid rgba(0,0,0,.29);
-  cursor: pointer;
-  background: #fff;
-  font-size: 16px;
-  width: 250px;
-  position: relative;
+    text-transform: uppercase;
+    margin: 35px auto;
+    padding: 10px;
+    border: 1px solid rgba(0, 0, 0, .29);
+    cursor: pointer;
+    background: #fff;
+    font-size: 16px;
+    width: 250px;
+    position: relative;
 }
 
 .btn:hover {
-  border-color: rgba(0,0,0,.5);
-  text-decoration: none;
+    border-color: rgba(0, 0, 0, .5);
+    text-decoration: none;
 }
 
 .btn:focus {
-  outline: 0;
-  font-weight: 700;
-  border-width: 2px;
+    outline: 0;
+    font-weight: 700;
+    border-width: 2px;
 }
 
 .center {
-  text-align: center;
+    text-align: center;
 }
 
 .active {
-  font-weight: bold;
+    font-weight: bold;
 }
 
 .nav ul {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  text-decoration: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    text-decoration: none;
 }
 
 .nav li:first-child {
-  padding-left: 0;
+    padding-left: 0;
 }
 
 ul {
-  padding-left: 0;
+    padding-left: 0;
 }
 
 li {
-  list-style-type: none;
-  padding: 10px;
-  text-decoration: none;
+    list-style-type: none;
+    padding: 10px;
+    text-decoration: none;
 }
 
 .avatar {
-  height: 50px;
-  border-radius: 25px;
-  margin: 10px;
+    height: 50px;
+    border-radius: 25px;
+    margin: 10px;
 }
 
 .tweet {
-  width: 100%;
-  max-width: 590px;
-  padding: 10px;
-  display: flex;
-  margin: 0 auto;
-  border: 1px solid #dad7d7;
-  border-radius: 3px;
-  cursor: pointer;
+    width: 100%;
+    max-width: 590px;
+    padding: 10px;
+    display: flex;
+    margin: 0 auto;
+    border: 1px solid #dad7d7;
+    border-radius: 3px;
+    cursor: pointer;
 }
 
 .tweet-info {
-  margin: 10px;
-  display: flex;
-  flex-direction: column;
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
 }
 
 /* Hacky but less typing in the video */
 .tweet-info > div > span:first-child {
-  font-weight: bold;
-  margin-right: 5px;
+    font-weight: bold;
+    margin-right: 5px;
 }
+
 .tweet-info > div > span:nth-child(2) {
-  color: #969696;
-  font-size: 16px;
+    color: #969696;
+    font-size: 16px;
 }
+
 .tweet-info > div > div {
-  color: #969696;
-  font-size: 15px;
+    color: #969696;
+    font-size: 15px;
 }
+
 .tweet-info > div > p {
-  font-size: 18px;
-  margin: 10px 0;
+    font-size: 18px;
+    margin: 10px 0;
 }
+
 .tweet-icons {
-  display: flex;
-  align-items: center;
+    display: flex;
+    align-items: center;
 }
+
 .tweet-icons > span {
-  color: #969696;
-  margin: 0 15px 0 5px;
-  font-size: 18px !important;
+    color: #969696;
+    margin: 0 15px 0 5px;
+    font-size: 18px !important;
 }
+
 .tweet-icon {
-  font-size: 27px;
-  color: #697784;
+    font-size: 27px;
+    color: #697784;
 }
+
 .tweet-icon:hover {
-  color: #00b5d6;
-  cursor: pointer;
+    color: #00b5d6;
+    cursor: pointer;
 }
+
 .replying-to {
-  border: none;
-  background: transparent;
-  margin: 0;
-  padding: 0;
-  color: #969696;
-  cursor: pointer;
+    border: none;
+    background: transparent;
+    margin: 0;
+    padding: 0;
+    color: #969696;
+    cursor: pointer;
 }
 
 .heart-button {
-  background: transparent;
-  border: none;
+    background: transparent;
+    border: none;
 }
 
 .textarea {
-  border-radius: 4px;
-  border: 1px solid #dad7d7;
-  padding: 10px;
-  font-size: 15px;
-  height: 100px;
+    border-radius: 4px;
+    border: 1px solid #dad7d7;
+    padding: 10px;
+    font-size: 15px;
+    height: 100px;
 }
 
 .tweet-length {
-  text-align: right;
-  margin-top: 10px;
-  font-size: 20px;
-  color: #C3392A;
+    text-align: right;
+    margin-top: 10px;
+    font-size: 20px;
+    color: #C3392A;
 }
-
-
-
 
 
 select {
-  padding: 8px 16px;
-  border: 1px solid transparent;
-  border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
-  cursor: pointer;
-  user-select: none;
+    padding: 8px 16px;
+    border: 1px solid transparent;
+    border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
+    cursor: pointer;
+    user-select: none;
 }
 
 button {
-  box-shadow:inset 0px 1px 0px 0px #54a3f7;
-  background:linear-gradient(to bottom, #007dc1 5%, #0061a7 100%);
-  background-color:#007dc1;
-  border-radius:3px;
-  border:1px solid #124d77;
-  display:inline-block;
-  cursor:pointer;
-  color:#ffffff;
-  font-family:Arial;
-  font-size:13px;
-  padding:6px 24px;
-  text-decoration:none;
-  text-shadow:0px 1px 0px #154682;
-  height: 35px;
+    box-shadow: inset 0px 1px 0px 0px #54a3f7;
+    background: linear-gradient(to bottom, #007dc1 5%, #0061a7 100%);
+    background-color: #007dc1;
+    border-radius: 3px;
+    border: 1px solid #124d77;
+    display: inline-block;
+    cursor: pointer;
+    color: #ffffff;
+    font-family: Arial;
+    font-size: 13px;
+    padding: 6px 24px;
+    text-decoration: none;
+    text-shadow: 0px 1px 0px #154682;
+    height: 35px;
 }
 
 .login-title {
-  padding: 30px;
+    padding: 30px;
 }
 
 .login {
-  margin: 80px;
-  border: groove;
+    margin: 80px;
+    border: groove;
 }
 
 .login-form {
-  width: 100%;
-  max-width: 590px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  align-self: center;
-  width: 250px;
-  padding: 30px;
+    width: 100%;
+    max-width: 590px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    width: 250px;
+    padding: 30px;
 }
 
 .top-bar {
-  height: 50px;
+    height: 50px;
 }
 
 .top-bar .left-side {
-  padding: 20px;
-  position: absolute;
+    padding: 20px;
+    position: absolute;
 }
 
 .top-bar .right-side {
-  float: right;
-  padding: 20px;
+    float: right;
+    padding: 20px;
 }
 
 .top-bar label {
-  margin: 10px;
-  padding: 10px;
-  cursor: pointer;
+    margin: 10px;
+    padding: 10px;
+    cursor: pointer;
 }
 
 .top-bar label .selected {
-  background-color: steelblue;
-  border-color: black;
-  border-style: double;
-  color: gold;
+    background-color: steelblue;
+    border-color: black;
+    border-style: double;
+    color: gold;
 }
 
 .top-bar-line {
-  height: 3px;
-  background-color: black;
+    height: 3px;
+    background-color: black;
 }
 
 .question-list {
-  width: 500px;
-  margin: auto;
+    width: 500px;
+    margin: auto;
 }
 
 .question-card {
-  border: double;
-  height: fit-content;
-  background-color: antiquewhite;
+    border: double;
+    height: fit-content;
+    background-color: antiquewhite;
+    margin-top: 10px;
 }
 
 .question-card .avatar-container {
-  width: 100px;
-  height: 100px;
-  display: inline-table;
-  margin: 10px;
+    width: 100px;
+    height: 100px;
+    display: inline-table;
+    margin: 10px;
 }
 
 .question-card .avatar-container img {
-  border: solid;
-  border-radius: 100%;
-  width: 75%;
-  height: 75%;
-  margin: 10px;
+    border: solid;
+    border-radius: 100%;
+    width: 75%;
+    height: 75%;
+    margin: 10px;
 }
 
 .question-card .title {
-  display: inline-grid;
-  position: absolute;
-  margin: 30px;
+    display: inline-grid;
+    position: absolute;
+    margin: 30px;
+}
+
+.question-card .new-question-title {
+    display: inline-grid;
+    margin: 30px;
 }
 
 .question-card .subtitle {
-  margin-top: 20px;
-  font-size: 20px;
+    margin-top: 20px;
+    font-size: 20px;
 }
 
 .question-card .choices-container {
-  margin: 23px;
+    margin: 23px;
 }
 
 .question-card .view-button {
-  position: relative;
-  left: 350px;
-  margin: 10px;
-  width: 125px;
+    position: relative;
+    left: 350px;
+    margin: 10px;
+    width: 125px;
+}
+
+.question-card .choice {
+    padding: 10px;
+    height: fit-content;
+    margin-bottom: 5px;
+}
+
+.question-card .selected {
+    border: solid;
+}
+
+.question-card .pointer {
+    cursor: pointer;
+}
+
+.question-card .choice .percentage {
+    float: left;
+    margin-right: 10px;
+}
+
+.question-card .choice .percentage .percentage-text {
+    margin-top: 0px;
+}
+
+.question-card .choice .choice-text {
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+.question-card .choices-container .choice-input {
+    height: 25px;
+    width: 100%;
+    font-size: 16px;
+    padding-left: 5px;
+    border-right-width: 5px;
+}
+
+.question-card .choices-container .choice-separator {
+    text-align: center;
+}
+
+.question-card .leader-container {
+    display: flex;
+}
+
+.question-card .leader-container .score {
+    height: 100px;
+    width: 100px;
+    background-color: green;
+    border: solid;
+    margin-top: 5px;
+    margin-left: 100px;
+    border-radius: 100%;
+}
+
+.question-card .leader-container .score-text {
+    text-align: center;
+    height: 100%;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    padding-top: 30px;
+    color: white;
+    font-size: 50px;
 }
