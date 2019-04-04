@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from "react-router-dom";
 
 class QuestionCard extends React.Component {
 
@@ -24,9 +25,11 @@ class QuestionCard extends React.Component {
                             <p>2) Trabajar en un proyecto desarrollado en Angular.js</p>
                         </div>
                         <div>
-                            <button className="view-button">
-                                View
-                            </button>
+                            <Link to="/question/1234">
+                                <button className="view-button">
+                                    View
+                                </button>
+                            </Link>
                         </div>
                     </div>
                 </div>

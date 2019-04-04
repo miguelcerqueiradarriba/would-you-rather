@@ -228,7 +228,7 @@ button {
     cursor: pointer;
 }
 
-.top-bar label .selected {
+.selected {
     background-color: steelblue;
     border-color: black;
     border-style: double;

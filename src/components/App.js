@@ -1,32 +1,38 @@
-import React, { Component, Fragment } from 'react'
-import { BrowserRouter as Router, Route } from 'react-router-dom'
-import { connect } from 'react-redux'
-import { handleInitialData } from '../actions/shared'
+import React, {Component, Fragment} from 'react'
+import {Route, Router, Switch} from 'react-router-dom'
+import {connect} from 'react-redux'
+import {handleInitialData} from '../actions/shared'
 import Login from "./Login";
-import TopBar from "./TopBar";
-import QuestionList from "./QuestionList";
+import Home from "./Home";
+import NewQuestion from "./NewQuestion";
+import QuestionDetails from "./QuestionDetails";
+import LeaderBoard from "./LeaderBoard";
 
 class App extends Component {
-  componentDidMount() {
-    this.props.dispatch(handleInitialData())
-  }
-  render() {
-    return (
-      <Router>
-        <Fragment>
-          <Login/>
-          <TopBar/>
-          <QuestionList/>
-        </Fragment>
-      </Router>
-    )
-  }
+    constructor(props) {
+        super(props);
+        // this.props.dispatch(handleInitialData())
+    }
+
+    render() {
+        return (
+            <Fragment>
+                <Route exact path="/login" component={Login}/>
+                <Route exact path="/home" component={Home}/>
+                <Route exact path="/newQuestion" component={NewQuestion}/>
+                <Route exact path="/question/:id" component={QuestionDetails}/>
+                <Route exact path="/leaderboard" component={LeaderBoard}/>
+            </Fragment>
+        )
+    }
 }
 
-function mapStateToProps ({ authedUser }) {
-  return {
-    loading: authedUser === null
-  }
+function mapStateToProps({authedUser}) {
+    return {
+        loading: authedUser === null
+    }
 }
 
-export default connect(mapStateToProps)(App)
+// export default connect(mapStateToProps)(App)
+
+export default App

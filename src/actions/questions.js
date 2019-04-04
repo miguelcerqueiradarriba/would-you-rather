@@ -1,0 +1,41 @@
+import { saveQuestion } from '../utils/api'
+import { showLoading, hideLoading } from 'react-redux-loading'
+
+export const RECEIVE_QUESTIONS = 'RECEIVE_QUESTIONS'
+export const ADD_QUESTION = 'ADD_QUESTION'
+
+function addQuestion (question) {
+  return {
+    type: ADD_QUESTION,
+    question,
+  }
+}
+
+export function handleAddQuestion (firstText, secondText) {
+  return (dispatch, getState) => {
+    const { authedUser } = getState();
+
+    dispatch(showLoading());
+
+    return saveQuestion({
+      id: "Cambiar por uuid",
+      author: authedUser,
+      optionOne: {
+        votes: [],
+        text: firstText
+      },
+      optionTwo: {
+        votes: [],
+        text: secondText
+      }
+    }).then((question) => dispatch(addQuestion(question)))
+      .then(() => dispatch(hideLoading()))
+  }
+}
+
+export function receiveQuestions (questions) {
+  return {
+    type: RECEIVE_QUESTIONS,
+    questions: questions,
+  }
+}

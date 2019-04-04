@@ -1,4 +1,5 @@
 import React from 'react'
+import {Link} from "react-router-dom";
 
 class Login extends React.Component {
 
@@ -12,7 +13,9 @@ class Login extends React.Component {
                         <option>Fulanito</option>
                         <option>Menganito</option>
                     </select>
-                    <button type="submit">Log In</button>
+                    <Link to='/home'>
+                        <button type="submit">Log In</button>
+                    </Link>
                 </form>
             </div>
         );
