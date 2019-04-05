@@ -1,5 +1,5 @@
 import React, {Component, Fragment} from 'react'
-import {Route, Router, Switch} from 'react-router-dom'
+import {Route, Router, Switch, withRouter} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {handleInitialData} from '../actions/shared'
 import Login from "./Login";
@@ -11,7 +11,7 @@ import LeaderBoard from "./LeaderBoard";
 class App extends Component {
     constructor(props) {
         super(props);
-        // this.props.dispatch(handleInitialData())
+        this.props.dispatch(handleInitialData())
     }
 
     render() {
@@ -27,12 +27,4 @@ class App extends Component {
     }
 }
 
-function mapStateToProps({authedUser}) {
-    return {
-        loading: authedUser === null
-    }
-}
-
-// export default connect(mapStateToProps)(App)
-
-export default App
+export default withRouter(connect()(App))
