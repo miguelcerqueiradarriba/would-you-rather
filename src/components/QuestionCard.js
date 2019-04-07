@@ -1,7 +1,12 @@
 import React from 'react';
 import {Link} from "react-router-dom";
+import {connect} from "react-redux";
 
 class QuestionCard extends React.Component {
+
+    constructor(props) {
+        super(props);
+    }
 
     render() {
         return (
@@ -10,22 +15,22 @@ class QuestionCard extends React.Component {
                     <div className="question-card">
                         <div className="avatar-container">
                             <img
-                                src="http://www.personalbrandingblog.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640-300x300.png"/>
+                                src={this.props.user.avatarURL}/>
                         </div>
                         <div className="title">
                             <label>
-                                <b>Usuario</b> dice:
+                                <b>{this.props.user.name}</b> says:
                             </label>
                             <label className="subtitle">
                                 <b>Would You Rather...?</b>
                             </label>
                         </div>
                         <div className="choices-container">
-                            <p>1) Trabajar en un proyecto desarrollado en React.js</p>
-                            <p>2) Trabajar en un proyecto desarrollado en Angular.js</p>
+                            <p>1) {this.props.question.optionOne.text}</p>
+                            <p>2) ...</p>
                         </div>
                         <div>
-                            <Link to="/question/1234">
+                            <Link to={`/questions/${this.props.question.id}`}>
                                 <button className="view-button">
                                     View
                                 </button>
@@ -38,4 +43,10 @@ class QuestionCard extends React.Component {
     }
 }
 
-export default QuestionCard;
+function mapStateToProps(store, props) {
+    return {
+        user: Object.values(store.users).find(user => user.id === props.question.author)
+    }
+}
+
+export default connect(mapStateToProps)(QuestionCard);

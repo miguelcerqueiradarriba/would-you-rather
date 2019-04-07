@@ -1,41 +1,38 @@
-import { saveQuestion } from '../utils/api'
-import { showLoading, hideLoading } from 'react-redux-loading'
+import {saveQuestion} from '../utils/api'
+import {updateUser} from "./users";
 
-export const RECEIVE_QUESTIONS = 'RECEIVE_QUESTIONS'
-export const ADD_QUESTION = 'ADD_QUESTION'
+export const RECEIVE_QUESTIONS = 'RECEIVE_QUESTIONS';
+export const ADD_QUESTION = 'ADD_QUESTION';
 
-function addQuestion (question) {
-  return {
-    type: ADD_QUESTION,
-    question,
-  }
+function addQuestion(question) {
+    return {
+        type: ADD_QUESTION,
+        question,
+    }
 }
 
-export function handleAddQuestion (firstText, secondText) {
-  return (dispatch, getState) => {
-    const { authedUser } = getState();
+export function handleAddQuestion(firstText, secondText) {
+    return (dispatch, getState) => {
+        const {authedUser, users} = getState();
 
-    dispatch(showLoading());
+        return saveQuestion({
+            optionOneText: firstText,
+            optionTwoText: secondText,
+            author: authedUser
+        }).then((question) => {
+            dispatch(addQuestion(question));
 
-    return saveQuestion({
-      id: "Cambiar por uuid",
-      author: authedUser,
-      optionOne: {
-        votes: [],
-        text: firstText
-      },
-      optionTwo: {
-        votes: [],
-        text: secondText
-      }
-    }).then((question) => dispatch(addQuestion(question)))
-      .then(() => dispatch(hideLoading()))
-  }
+            const user = Object.values(users).find(user => user.id === authedUser);
+            user.questions.push(question.id);
+
+            dispatch(updateUser(user));
+        })
+    }
 }
 
-export function receiveQuestions (questions) {
-  return {
-    type: RECEIVE_QUESTIONS,
-    questions: questions,
-  }
+export function receiveQuestions(questions) {
+    return {
+        type: RECEIVE_QUESTIONS,
+        questions: questions,
+    }
 }

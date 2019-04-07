@@ -30,31 +30,38 @@ class QuestionList extends React.Component {
     };
 
     getUnansweredQuestions() {
-        if (this.props.questions && this.props.user) {
-            return Object.values(this.props.questions).filter(question => {
-                return !this.props.user.questions[question.id] && !this.props.user.answers[question.id];
-            });
+        const { user, questions } =this.props;
+
+        if (questions && user) {
+            return Object.values(questions).filter(question => {
+                return !user.questions.find(userQuestion => userQuestion === question.id)
+                    && !user.answers[question.id];
+            }).sort((a, b) => b.timestamp - a.timestamp);
         }
         return {};
     }
 
     getAnsweredQuestions() {
-        if (this.props.questions && this.props.user) {
-            return this.props.user.answers && Object.entries(this.props.user.answers).map(answer => {
+        const { user, questions } =this.props;
+
+        if (questions && user) {
+            return user.answers && Object.entries(user.answers).map(answer => {
                 return {
-                    ...Object.values(this.props.questions).find(question => question.id === answer[0]),
+                    ...Object.values(questions).find(question => question.id === answer[0]),
                     optionSelected: answer[1]
                 }
-            });
+            }).sort((a, b) => b.timestamp - a.timestamp);
         }
         return {};
     }
 
     getMyQuestions() {
-        if (this.props.questions && this.props.user) {
-            return Object.values(this.props.questions).filter(question => {
-                return this.props.user.questions.includes(question.id);
-            });
+        const { user, questions } =this.props;
+
+        if (questions && user) {
+            return Object.values(questions).filter(question => {
+                return user.questions.includes(question.id);
+            }).sort((a, b) => b.timestamp - a.timestamp);
         }
         return {};
     }
@@ -85,7 +92,11 @@ class QuestionList extends React.Component {
                 <div className="question-list">
                     <TopBar leftOptions={options} rightOptions={{}}/>
                     {questions && Object.values(questions).map(question => {
-                        return (<QuestionCard question={question}/>)
+                        return (
+                            <div key={question.id}>
+                                <QuestionCard question={question}/>
+                            </div>
+                        )
                     })}
                 </div>
             )
@@ -97,7 +108,11 @@ class QuestionList extends React.Component {
                 <div className="question-list">
                     <TopBar leftOptions={options} rightOptions={{}}/>
                     {questions && Object.values(questions).map(question => {
-                        return (<AnsweredQuestionCard question={question}/>)
+                        return (
+                            <div key={question.id}>
+                                <AnsweredQuestionCard question={question}/>
+                            </div>
+                        )
                     })}
                 </div>
             )
@@ -109,7 +124,11 @@ class QuestionList extends React.Component {
                 <div className="question-list">
                     <TopBar leftOptions={options} rightOptions={{}}/>
                     {questions && Object.values(questions).map(question => {
-                        return (<AnsweredQuestionCard question={question}/>)
+                        return (
+                            <div key={question.id}>
+                                <AnsweredQuestionCard question={question}/>
+                            </div>
+                        )
                     })}
                 </div>
             )

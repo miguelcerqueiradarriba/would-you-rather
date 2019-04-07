@@ -5,21 +5,30 @@ class LeaderCard extends React.Component {
     render() {
         return (
             <div className="question-card">
-                <div className="avatar-container"><img
-                    src="http://www.personalbrandingblog.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640-300x300.png"/>
+                <div className="avatar-container">
+                    <img src={this.props.user.avatarURL}/>
                 </div>
-                <div className="title"><label><b>Usuario</b></label></div>
+                <div className="title">
+                    <label>
+                        <b>{this.props.user.name}</b>
+                    </label>
+                </div>
                 <div className="leader-container">
                     <div className="choices-container">
-                        <div className="choice"><p className="choice-text"><b>Questions answered: 10<b></b></b></p>
+                        <div className="choice">
+                            <p className="choice-text">
+                                <b>Questions answered: {Object.values(this.props.user.answers).length}</b>
+                            </p>
                         </div>
                         <div className="choice">
-                            <p className="choice-text"><b>Questions created: 5<b></b></b></p>
+                            <p className="choice-text">
+                                <b>Questions created: {this.props.user.questions.length}</b>
+                            </p>
                         </div>
                     </div>
                     <div className="score">
                         <p className="score-text">
-                            <b>15</b>
+                            <b>{Object.values(this.props.user.answers).length + this.props.user.questions.length}</b>
                         </p>
                     </div>
                 </div>

@@ -1,6 +1,7 @@
 import React from 'react';
 import {connect} from "react-redux";
 import {Link, withRouter} from "react-router-dom";
+import {unsetAuthedUser} from "../actions/authedUser";
 
 class TopBar extends React.Component {
 
@@ -11,7 +12,7 @@ class TopBar extends React.Component {
     }
 
     logout() {
-        // dispatch(logout);
+        this.props.dispatch(unsetAuthedUser());
         this.props.history.push("/login");
     }
 
@@ -22,14 +23,14 @@ class TopBar extends React.Component {
         if (props.option.path) {
             return (
                 <Link key={key} to={props.option.path}>
-                    <label className={className} onClick={props.option.onClick}>{props.option.name}</label>
+                    <label className={`pointer ${className}`} onClick={props.option.onClick}>{props.option.name}</label>
                 </Link>
             )
         }
 
         if (props.option.onClick) {
             return (
-                <label className={className} key={key} onClick={props.option.onClick}>{props.option.name}</label>
+                <label className={`pointer ${className}`} key={key} onClick={props.option.onClick}>{props.option.name}</label>
             )
         }
 
@@ -43,12 +44,12 @@ class TopBar extends React.Component {
         const leftOptions = this.props.leftOptions ||
             [
                 {name: 'Home', path: '/home', selected: this.props.history.location.pathname === '/home'},
-                {name: 'New question', path: '/newQuestion', selected: this.props.history.location.pathname === '/newQuestion'},
+                {name: 'New question', path: '/add', selected: this.props.history.location.pathname === '/newQuestion'},
                 {name: 'Leaderboard', path: '/leaderboard', selected: this.props.history.location.pathname === '/leaderboard'},
             ];
         const rightOptions = this.props.rightOptions ||
             [
-                {name: 'User'},
+                {name: this.props.user && this.props.user.name},
                 {name: 'Logout', onClick: this.logout}
             ];
 
@@ -76,10 +77,8 @@ class TopBar extends React.Component {
 
 function mapStateToProps(store) {
     return {
-        authedUser: store.authedUser
+        user: Object.values(store.users).find(user => user.id === store.authedUser)
     }
 }
 
-// export default connect(mapStateToProps)(TopBar);
-
-export default withRouter(TopBar);
+export default withRouter(connect(mapStateToProps)(TopBar));

@@ -1,37 +1,55 @@
 import React from 'react'
+import {connect} from "react-redux";
 
 class AnsweredQuestionCard extends React.Component {
 
     render() {
+
+        const answers = this.props.users.map(user => {
+            return user.answers[this.props.question.id];
+        }).filter(option => option !== undefined);
+
+        const numberOfOne = answers.filter(answer => answer === 'optionOne').length;
+        const numberOfTwo = answers.filter(answer => answer === 'optionTwo').length;
+
+        const percentageOne = numberOfOne * 100 / (answers.length);
+        const percentageTwo = numberOfTwo * 100 / (answers.length);
+
         return (
             <div className="question-card">
-                <div className="avatar-container"><img
-                    src="http://www.personalbrandingblog.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640-300x300.png"/>
+                <div className="avatar-container">
+                    <img src={this.props.user.avatarURL}/>
                 </div>
-                <div className="title"><label><b>Usuario</b> dice:</label><label className="subtitle"><b>Would You
-                    Rather...?</b></label></div>
+                <div className="title">
+                    <label>
+                        <b>{this.props.user.name}</b> says:
+                    </label>
+                    <label className="subtitle">
+                        <b>Would You Rather...?</b>
+                    </label>
+                </div>
                 <div className="choices-container">
-                    <div className="choice selected">
+                    <div className={`choice ${this.props.question.optionSelected === 'optionOne' ? 'selected' : ''}`}>
                         <div className="percentage">
                             <p className="percentage-text">
-                                <b>50%</b>
+                                <b>{Number.isNaN(percentageOne) ? 0 : Math.round(percentageOne * 100) / 100}%</b>
                             </p>
                         </div>
                         <div>
                             <p className="choice-text">
-                                Trabajar en un proyecto desarrollado en React.js <b>1/2 votos</b>
+                                {this.props.question.optionOne.text} <b>{numberOfOne}/{answers.length} votes</b>
                             </p>
                         </div>
                     </div>
-                    <div className="choice">
+                    <div className={`choice ${this.props.question.optionSelected === 'optionTwo' ? 'selected' : ''}`}>
                         <div className="percentage">
                             <p className="percentage-text">
-                                <b>50%</b>
+                                <b>{Number.isNaN(percentageTwo) ? 0 : Math.round(percentageTwo * 100) / 100}%</b>
                             </p>
                         </div>
                         <div>
                             <p className="choice-text">
-                                Trabajar en un proyecto desarrollado en Angular.js <b>1/2 votos</b>
+                                {this.props.question.optionTwo.text} <b>{numberOfTwo}/{answers.length} votes</b>
                             </p>
                         </div>
                     </div>
@@ -41,4 +59,11 @@ class AnsweredQuestionCard extends React.Component {
     }
 }
 
-export default AnsweredQuestionCard;
+function mapStateToProps(store, props) {
+    return {
+        users: Object.values(store.users),
+        user: Object.values(store.users).find(user => user.id === props.question.author)
+    }
+}
+
+export default connect(mapStateToProps)(AnsweredQuestionCard);

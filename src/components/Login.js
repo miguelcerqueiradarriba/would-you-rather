@@ -14,7 +14,12 @@ class Login extends React.Component {
     login(e) {
         e.preventDefault();
         this.props.dispatch(setAuthedUser(e.target['user'].value));
-        this.props.history.push("/home");
+
+        if (this.props.requestedPath) {
+            this.props.history.push(this.props.requestedPath);
+        } else {
+            this.props.history.push("home");
+        }
     }
 
     render() {
@@ -25,7 +30,7 @@ class Login extends React.Component {
                     <label htmlFor="username">Username:</label>
                     <select id="user" name="user" className="select">
                         {this.props.users && Object.values(this.props.users).map(user => {
-                            return (<option value={user.id}>{user.name}</option>)
+                            return (<option key={user.name} value={user.id}>{user.name}</option>)
                         })}
                     </select>
                     <button type="submit">Log In</button>

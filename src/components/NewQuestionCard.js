@@ -1,5 +1,7 @@
 import React from 'react'
 import {withRouter} from "react-router-dom";
+import {handleAddQuestion} from "../actions/questions";
+import {connect} from "react-redux";
 
 class NewQuestionCard extends React.Component {
 
@@ -12,12 +14,10 @@ class NewQuestionCard extends React.Component {
     submitNewQuestion(e) {
         e.preventDefault();
 
-        const data = {
-            firstOption: e.target['first-choice'].value,
-            secondOption: e.target['second-choice'].value
-        };
-
-        //Do redux
+        this.props.dispatch(handleAddQuestion(
+            e.target['first-choice'].value,
+            e.target['second-choice'].value
+        ));
 
         this.props.history.push("/home");
     }
@@ -50,4 +50,10 @@ class NewQuestionCard extends React.Component {
     }
 }
 
-export default withRouter(NewQuestionCard);
+function mapStateToProps(store) {
+    return {
+        user: Object.values(store.users).find(user => user.id === store.authedUser)
+    }
+}
+
+export default withRouter(connect(mapStateToProps)(NewQuestionCard));

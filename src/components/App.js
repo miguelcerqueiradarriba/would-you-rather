@@ -7,6 +7,7 @@ import Home from "./Home";
 import NewQuestion from "./NewQuestion";
 import QuestionDetails from "./QuestionDetails";
 import LeaderBoard from "./LeaderBoard";
+import NotFound from "./NotFound";
 
 class App extends Component {
     constructor(props) {
@@ -15,16 +16,32 @@ class App extends Component {
     }
 
     render() {
+
+        if (!this.props.authedUser && this.props.location.pathname !== '/login') {
+            return(
+                <Login requestedPath={this.props.location.pathname}/>
+            )
+        }
+
         return (
             <Fragment>
-                <Route exact path="/login" component={Login}/>
-                <Route exact path="/home" component={Home}/>
-                <Route exact path="/newQuestion" component={NewQuestion}/>
-                <Route exact path="/question/:id" component={QuestionDetails}/>
-                <Route exact path="/leaderboard" component={LeaderBoard}/>
+                <Switch>
+                    <Route exact path="/login" component={Login}/>
+                    <Route exact path="/home" component={Home}/>
+                    <Route exact path="/add" component={NewQuestion}/>
+                    <Route exact path="/questions/:id" component={QuestionDetails}/>
+                    <Route exact path="/leaderboard" component={LeaderBoard}/>
+                    <Route exact path="*" component={NotFound} />
+                </Switch>
             </Fragment>
         )
     }
 }
 
-export default withRouter(connect()(App))
+function mapStateToProps(store) {
+    return {
+        authedUser: store.authedUser
+    }
+}
+
+export default withRouter(connect(mapStateToProps)(App))
