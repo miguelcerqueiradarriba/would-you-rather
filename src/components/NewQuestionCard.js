@@ -14,6 +14,11 @@ class NewQuestionCard extends React.Component {
     submitNewQuestion(e) {
         e.preventDefault();
 
+        if (!e.target['first-choice'].value || !e.target['second-choice'].value) {
+            document.getElementById('error').innerHTML = 'You must put two choices.';
+            return;
+        }
+
         this.props.dispatch(handleAddQuestion(
             e.target['first-choice'].value,
             e.target['second-choice'].value
@@ -39,6 +44,7 @@ class NewQuestionCard extends React.Component {
                             <input type="text" name="first-choice" className="choice-input"/>
                             <p className="choice-separator">OR</p>
                             <input type="text" name="second-choice" className="choice-input"/>
+                            <label id={'error'}></label>
                         </div>
                     </div>
                     <div>

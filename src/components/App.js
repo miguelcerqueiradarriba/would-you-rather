@@ -1,5 +1,5 @@
 import React, {Component, Fragment} from 'react'
-import {Route, Router, Switch, withRouter} from 'react-router-dom'
+import {Route, Switch, withRouter} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {handleInitialData} from '../actions/shared'
 import Login from "./Login";

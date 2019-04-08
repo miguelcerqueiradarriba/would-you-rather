@@ -18,7 +18,7 @@ class AnsweredQuestionCard extends React.Component {
         return (
             <div className="question-card">
                 <div className="avatar-container">
-                    <img src={this.props.user.avatarURL}/>
+                    <img alt={this.props.user.name} src={this.props.user.avatarURL}/>
                 </div>
                 <div className="title">
                     <label>

@@ -4,18 +4,13 @@ import {connect} from "react-redux";
 
 class QuestionCard extends React.Component {
 
-    constructor(props) {
-        super(props);
-    }
-
     render() {
         return (
             <div>
                 <div>
                     <div className="question-card">
                         <div className="avatar-container">
-                            <img
-                                src={this.props.user.avatarURL}/>
+                            <img alt={this.props.user.name} src={this.props.user.avatarURL}/>
                         </div>
                         <div className="title">
                             <label>

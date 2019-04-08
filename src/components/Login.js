@@ -16,9 +16,12 @@ class Login extends React.Component {
         this.props.dispatch(setAuthedUser(e.target['user'].value));
 
         if (this.props.requestedPath) {
-            this.props.history.push(this.props.requestedPath);
+            if (this.props.requestedPath==='/') {
+                return this.props.history.push("/home");
+            }
+            return this.props.history.push(this.props.requestedPath);
         } else {
-            this.props.history.push("home");
+            return this.props.history.push("home");
         }
     }
 

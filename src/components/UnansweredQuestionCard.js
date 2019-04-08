@@ -8,22 +8,11 @@ class UnansweredQuestionCard extends React.Component {
     constructor(props) {
         super(props);
 
-        this.submitFirstChoice = this.submitFirstChoice.bind(this);
-        this.submitSecondChoice = this.submitSecondChoice.bind(this);
+        this.submitChoice = this.submitChoice.bind(this);
     }
 
-    submitFirstChoice() {
-        this.props.user.answers[this.props.question.id] = 'optionOne';
-
-        this.props.dispatch(
-            updateUser(this.props.user)
-        );
-
-        this.props.history.push(`/questions/${this.props.question.id}`)
-    }
-
-    submitSecondChoice() {
-        this.props.user.answers[this.props.question.id] = 'optionTwo';
+    submitChoice(choice) {
+        this.props.user.answers[this.props.question.id] = choice;
 
         this.props.dispatch(
             updateUser(this.props.user)
@@ -36,7 +25,7 @@ class UnansweredQuestionCard extends React.Component {
         return (
             <div className="question-card">
                 <div className="avatar-container">
-                    <img src={this.props.questionUser && this.props.questionUser.avatarURL}/>
+                    <img alt={this.props.questionUser.name} src={this.props.questionUser && this.props.questionUser.avatarURL}/>
                 </div>
                 <div className="title">
                     <label>
@@ -47,14 +36,14 @@ class UnansweredQuestionCard extends React.Component {
                     </label>
                 </div>
                 <div className="choices-container">
-                    <div className="choice unanswered pointer" onClick={this.submitFirstChoice}>
+                    <div className="choice unanswered pointer" onClick={() => this.submitChoice('optionOne')}>
                         <div>
                             <p className="choice-text">
                                 {this.props.question.optionOne.text}
                             </p>
                         </div>
                     </div>
-                    <div className="choice unanswered pointer" onClick={this.submitSecondChoice}>
+                    <div className="choice unanswered pointer" onClick={() => this.submitChoice('optionTwo')}>
                         <div>
                             <p className="choice-text">
                                 {this.props.question.optionTwo.text}
